@@ -1,0 +1,146 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "http://jsonschema.net",
+  "required": false,
+  "properties": {
+    "enterpriseMessage": {
+      "type": "object",
+      "id": "http://jsonschema.net/enterpriseMessage",
+      "required": false,
+      "properties": {
+        "enterpriseHeader": {
+          "type": "object",
+          "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader",
+          "required": true,
+          "properties": {
+            "action": {
+              "type": "string",
+              "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/action",
+              "required": false
+            },
+            "batch": {
+              "type": "object",
+              "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/batch",
+              "required": false,
+              "properties": {
+                "batchId": {
+                  "type": "string",
+                  "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/batch/batchId",
+                  "required": false
+                },
+                "sequenceNumber": {
+                  "type": "integer",
+                  "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/batch/sequenceNumber",
+                  "required": false
+                },
+                "totalMessages": {
+                  "type": "integer",
+                  "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/batch/totalMessages",
+                  "required": false
+                }
+              }
+            },
+            "communication": {
+              "type": "string",
+              "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/communication",
+              "required": false
+            },
+            "control": {},
+            "correlationId": {
+              "type": "string",
+              "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/correlationId",
+              "required": false
+            },
+            "createdUtc": {
+              "type": "string",
+              "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/createdUtc",
+              "required": true
+            },
+            "custom": {},
+            "messageHash": {
+              "type": "string",
+              "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/messageHash",
+              "required": false
+            },
+            "messageId": {
+              "type": "string",
+              "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/messageId",
+              "required": true
+            },
+            "priority": {
+              "type": "string",
+              "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/priority",
+              "required": false
+            },
+            "resource": {
+              "type": "object",
+              "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/resource",
+              "required": false,
+              "properties": {
+                "resourceCreatedUtc": {
+                  "type": "string",
+                  "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/resource/resourceCreatedUtc",
+                  "required": false
+                },
+                "resourceHash": {
+                  "type": "string",
+                  "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/resource/resourceHash",
+                  "required": false
+                },
+                "resourceId": {
+                  "type": "string",
+                  "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/resource/resourceId",
+                  "required": false
+                },
+                "resourceName": {
+                  "type": "string",
+                  "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/resource/resourceName",
+                  "required": false
+                }
+              }
+            },
+            "response": {
+              "type": "object",
+              "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/response",
+              "required": false,
+              "properties": {
+                "respondTo": {
+                  "type": "string",
+                  "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/response/respondTo",
+                  "required": false
+                },
+                "responseCompression": {
+                  "type": "string",
+                  "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/response/responseCompression",
+                  "required": false
+                },
+                "responseMediaType": {
+                  "type": "string",
+                  "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/response/responseMediaType",
+                  "required": false
+                }
+              }
+            },
+            "source": {
+              "type": "string",
+              "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/source",
+              "required": true
+            },
+            "target": {
+              "type": "string",
+              "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/target",
+              "required": false
+            },
+            "threadId": {
+              "type": "string",
+              "id": "http://jsonschema.net/enterpriseMessage/enterpriseHeader/threadId",
+              "required": true
+            }
+          }
+        },
+        "messageBody": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,86 @@
+#%RAML 1.0
+title: EnterpriseSearch
+version: v2
+baseUri: http://0.0.0.0:8966/rest-facade/search-{version}/search
+mediaType: application/xml
+securitySchemes:
+  basicAuth:
+    description: This is standrad basic auth
+    type: Basic Authentication
+annotationTypes:
+  feedbackRequested: string
+types:
+  es-search-request: !include schemas/EnterpriseSearch.xsd
+  es-search-response: !include schemas/EnterpriseSearchResponse.xsd
+  es-search-exception: !include schemas/EnterpriseException.xsd
+securedBy: basicAuth
+/{resourceName}:
+  get:
+    (feedbackRequested):  Please comment and engage in the discussion
+    description: This will allow clients to search business resources with the defined search query
+    queryParameters:
+      SearchQuery:
+        description: This will be used as SearchQuery of EnterpriseSearch Message.
+        example: resource_id:997113282758
+        type: string
+        required: true
+      offset:
+        description: This will be used as OffSet element of EnterpriseSearch Message.
+        type: integer
+        required: false
+      rows:
+        description: This will be used as Rows element of EnterpriseSearch Message.
+        type: integer
+        required: false
+    responses:
+      200:
+        description: Standard response for successful HTTP requests. The response will contain an entity corresponding to the Search resource as an Enterprise Message
+        body:
+          application/xml:
+            type: es-search-response
+            example: !include examples/EnterpriseSearchResponse.xml
+      400:
+          description: The server cannot or will not process the request due to an apparent client error e.g malformed request syntax, too large size, invalid request message framing
+          body:
+            application/xml:
+              type: es-search-exception
+              example: !include examples/EnterpriseSearchException.xml
+
+      401:
+          description:  Authentication is required and has failed or has not yet been provided
+
+      500:
+        description: A generic error message, given when an unexpected condition was encountered
+        body:
+          application/xml:
+            type: es-search-exception
+            example: !include examples/EnterpriseSearchException.xml
+  post:
+    (feedbackRequested):  Please comment and engage in the discussion
+    description:  This will allow clients to search business resources with the search query within the request body.
+    body:
+      application/xml:
+        type: es-search-request
+        example: !include examples/EnterpriseSearchRequest.xml
+    responses:
+      200:
+        description: Standard response for successful HTTP requests. The response will contain an entity corresponding to the Search resource as an Enterprise Message
+        body:
+          application/xml:
+            type: es-search-response
+            example: !include examples/EnterpriseSearchResponse.xml
+      400:
+          description: The server cannot or will not process the request due to an apparent client error e.g malformed request syntax, too large size, invalid request message framing
+          body:
+            application/xml:
+              type: es-search-exception
+              example: !include examples/EnterpriseSearchException.xml
+      401:
+          description:  Authentication is required and has failed or has not yet been provided
+
+      500:
+        description: A generic error message, given when an unexpected condition was encountered
+        body:
+          application/xml:
+            type: es-search-exception
+            example: !include examples/EnterpriseSearchException.xml

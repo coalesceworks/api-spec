@@ -1,0 +1,76 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "http://jsonschema.net",
+  "required": false,
+  "properties": {
+    "enterpriseExceptionMessage": {
+      "type": "object",
+      "id": "http://jsonschema.net/enterpriseExceptionMessage",
+      "required": true,
+      "properties": {
+        "category": {
+          "type": "string",
+          "id": "http://jsonschema.net/enterpriseExceptionMessage/category",
+          "required": false
+        },
+        "createdUtc": {
+          "type": "string",
+          "id": "http://jsonschema.net/enterpriseExceptionMessage/createdUtc",
+          "required": false
+        },
+        "description": {
+          "type": "string",
+          "id": "http://jsonschema.net/enterpriseExceptionMessage/description",
+          "required": false
+        },
+        "details": {
+          "type": "string",
+          "id": "http://jsonschema.net/enterpriseExceptionMessage/details",
+          "required": false
+        },
+        "errorCode": {
+          "type": "string",
+          "id": "http://jsonschema.net/enterpriseExceptionMessage/errorCode",
+          "required": false
+        },
+        "exceptionId": {
+          "type": "string",
+          "id": "http://jsonschema.net/enterpriseExceptionMessage/exceptionId",
+          "required": false
+        },
+        "machine": {
+          "type": "string",
+          "id": "http://jsonschema.net/enterpriseExceptionMessage/machine",
+          "required": false
+        },
+        "messageId": {
+          "type": "string",
+          "id": "http://jsonschema.net/enterpriseExceptionMessage/messageId",
+          "required": false
+        },
+        "resourceId": {
+          "type": "string",
+          "id": "http://jsonschema.net/enterpriseExceptionMessage/resourceId",
+          "required": false
+        },
+        "resourceName": {
+          "type": "string",
+          "id": "http://jsonschema.net/enterpriseExceptionMessage/resourceName",
+          "required": false
+        },
+        "retriable": {
+          "type": "string",
+          "id": "http://jsonschema.net/enterpriseExceptionMessage/retriable",
+          "required": false
+        },
+        "service": {
+          "type": "string",
+          "id": "http://jsonschema.net/enterpriseExceptionMessage/service",
+          "required": false
+        },
+        "originalMessage": {}
+      }
+    }
+  }
+}

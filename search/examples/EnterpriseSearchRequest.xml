@@ -1,0 +1,6 @@
+<es:EnterpriseSearch xmlns:es="http://schemas.umusic.com/enterprise/services/2014/05">
+  <es:Offset>0</es:Offset>
+  <es:Rows>10</es:Rows>
+  <es:Result>Master</es:Result>
+  <es:SearchQuery>resource_id:ESTestResourceId AND dc\\:creator:DiGS AND dc\\:publisher:DiGS AND dc\\:identifier:12987530005 OR identifiers.upc:00602547770691 AND identifiers.catalog:124536</es:SearchQuery>
+</es:EnterpriseSearch>

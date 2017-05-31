@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.umusic.com/enterprise/services/2014/05"
+           attributeFormDefault="qualified" elementFormDefault="qualified"
+           targetNamespace="http://schemas.umusic.com/enterprise/services/2014/05">
+    <xs:element name="EnterpriseSearch" nillable="true" type="EnterpriseSearch"/>
+    <xs:complexType name="EnterpriseSearch">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="Offset" type="xs:integer"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="Rows" type="xs:integer"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="Result" type="xs:string"/>
+            <xs:choice>
+                <xs:element maxOccurs="1" minOccurs="1" name="Condition" type="Condition"/>
+                <xs:element maxOccurs="1" minOccurs="1" name="SearchQuery" type="xs:string"/>
+            </xs:choice>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Condition">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="0" name="Operator" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="Properties" type="Properties"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Properties">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="1" name="Property" type="Property"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Property">
+        <xs:sequence>
+            <xs:element maxOccurs="1" minOccurs="1" name="Key" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="1" name="Value" type="xs:string"/>
+            <xs:element maxOccurs="1" minOccurs="0" name="Operator" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

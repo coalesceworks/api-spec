@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.umusic.com/enterprise/services/2014/05"
+           elementFormDefault="qualified" targetNamespace="http://schemas.umusic.com/enterprise/services/2014/05">
+    <xs:element name="EnterpriseResponse" nillable="true" type="EnterpriseResponse"/>
+    <xs:complexType name="EnterpriseResponse">
+        <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="1" name="ResponseHeader" type="ResponseHeader"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="ResponseBody">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any processContents='skip'/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ResponseHeader">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="ResponseId" type="xs:string"/>
+            <xs:element name="RequestId" type="xs:string"/>
+            <xs:element name="ThreadId" type="xs:string"/>
+            <xs:element name="CreatedUtc" nillable="true" type="xs:dateTime"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="State" type="xs:string"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Status" nillable="true" type="xs:int"/>
+            <xs:element minOccurs="1" maxOccurs="1" name="Description" type="xs:string"/>
+            <xs:element minOccurs="0" maxOccurs="1" name="Exception">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any processContents='skip'/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ResponseHeader" nillable="true" type="ResponseHeader"/>
+</xs:schema>

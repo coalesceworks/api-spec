@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.umusic.com/enterprise/services/2014/05"
+           attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.umusic.com/enterprise/services/2014/05">
+    <xs:element name="EnterpriseExceptionMessage" nillable="true" type="EnterpriseExceptionMessage"/>
+
+    <xs:complexType name="EnterpriseExceptionMessage">
+        <xs:sequence>
+            <xs:element minOccurs="1" maxOccurs="1" name="ExceptionId" type="xs:string"></xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="CreatedUtc" type="xs:dateTime"></xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="xs:int"></xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="Description" type="xs:string"></xs:element>
+            <xs:element minOccurs="0" maxOccurs="1" name="Details" type="xs:string"></xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="Category" type="xs:string"></xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="Retriable" type="xs:boolean"></xs:element>
+            <xs:element minOccurs="0" maxOccurs="1" name="MessageId" type="xs:string"></xs:element>
+            <xs:element minOccurs="0" maxOccurs="1" name="ResourceName" type="xs:string"></xs:element>
+            <xs:element minOccurs="0" maxOccurs="1" name="ResourceId" type="xs:string"></xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="Service" type="xs:string"></xs:element>
+            <xs:element minOccurs="1" maxOccurs="1" name="Machine" type="xs:string"></xs:element>
+            <xs:element name="OriginalMessage">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:any processContents='skip'/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,59 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "http://jsonschema.net",
+  "required": true,
+  "properties": {
+    "EnterpriseResponse": {
+      "type": "object",
+      "id": "http://jsonschema.net/EnterpriseResponse",
+      "required": true,
+      "properties": {
+        "ResponseBody": {},
+        "ResponseHeader": {
+          "type": "object",
+          "id": "http://jsonschema.net/EnterpriseResponse/ResponseHeader",
+          "required": false,
+          "properties": {
+            "CreatedUtc": {
+              "type": "date-time",
+              "id": "http://jsonschema.net/EnterpriseResponse/ResponseHeader/CreatedUtc",
+              "required": false
+            },
+            "Description": {
+              "type": "string",
+              "id": "http://jsonschema.net/EnterpriseResponse/ResponseHeader/Description",
+              "required": false
+            },
+            "Exception": {},
+            "RequestId": {
+              "type": "string",
+              "id": "http://jsonschema.net/EnterpriseResponse/ResponseHeader/RequestId",
+              "required": false
+            },
+            "ResponseId": {
+              "type": "string",
+              "id": "http://jsonschema.net/EnterpriseResponse/ResponseHeader/ResponseId",
+              "required": false
+            },
+            "State": {
+              "type": "string",
+              "id": "http://jsonschema.net/EnterpriseResponse/ResponseHeader/State",
+              "required": false
+            },
+            "Status": {
+              "type": "string",
+              "id": "http://jsonschema.net/EnterpriseResponse/ResponseHeader/Status",
+              "required": false
+            },
+            "ThreadId": {
+              "type": "string",
+              "id": "http://jsonschema.net/EnterpriseResponse/ResponseHeader/ThreadId",
+              "required": false
+            }
+          }
+        }
+      }
+    }
+  }
+}
