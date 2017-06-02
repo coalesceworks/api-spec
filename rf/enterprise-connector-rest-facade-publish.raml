@@ -1,7 +1,7 @@
 #%RAML 1.0
-title: Enterprise Services Search
+title: Enterprise Services Publish
 version: v2
-baseUri: http://0.0.0.0:8966/rest-facade/search-{version}/search
+baseUri: http://0.0.0.0:8966/rest-facade/publish-{version}
 mediaType: application/xml
 securitySchemes:
   basicAuth:
@@ -10,70 +10,100 @@ securitySchemes:
 annotationTypes:
   feedbackRequested: string
 types:
-  es-search-request: !include schemas/EnterpriseSearch.xsd
-  es-search-response: !include schemas/EnterpriseSearchResponse.xsd
-  es-search-exception: !include schemas/EnterpriseException.xsd
+  em-request: !include schemas/EnterpriseMessage.xsd
+  em-response: !include schemas/EnterpriseResponse.xsd
+  em-exception: !include schemas/EnterpriseException.xsd
 securedBy: basicAuth
 /{resourceName}:
-  get:
-    (feedbackRequested):  Please comment and engage in the discussion
-    description: This will allow clients to search business resources with the defined search query
-    queryParameters:
-      SearchQuery:
-        description: This will be used as SearchQuery of EnterpriseSearch Message.
-        example: resource_id:997113282758
-        type: string
-        required: true
-      offset:
-        description: This will be used as OffSet element of EnterpriseSearch Message.
-        type: integer
-        required: false
-      rows:
-        description: This will be used as Rows element of EnterpriseSearch Message.
-        type: integer
-        required: false
-    responses:
-      200:
-        description: Standard response for successful HTTP requests. The response will contain an entity corresponding to the Search resource as an Enterprise Message
-        body:
-          application/xml:
-            type: es-search-response
-            example: !include examples/EnterpriseSearchResponse.xml
-      400:
-          description: The server cannot or will not process the request due to an apparent client error e.g malformed request syntax, too large size, invalid request message framing
-          body:
-            application/xml:
-              type: es-search-exception
-              example: !include examples/EnterpriseException.xml
-
-      401:
-          description:  Authentication is required and has failed or has not yet been provided
-
-      500:
-        description: A generic error message, given when an unexpected condition was encountered
-        body:
-          application/xml:
-            type: es-search-exception
-            example: !include examples/EnterpriseException.xml
   post:
     (feedbackRequested):  Please comment and engage in the discussion
-    description:  This will allow clients to search business resources with the search query within the request body.
+    description: This will allow clients to publish business resources to enterprise Service
+    headers:
+      enterprise-message-id: string
+      enterprise-correlation-id: string
+    queryParameters:
+      identifier:
+        description: Unique identifier for the resource.
+        example: 700p311Eo6
+        type: string
+        required: true
+      version:
+        description: 17 digit timestamp as yyyyMMddHHmmssSSS to identify version of the published resource.
+        example: 20173105164955891
+        type: integer
+        required: true
+      priority:
+        description: How important is your message
+        example: REGULAR
+        type: string
+        enum: [HIGH, REGULAR, LOW]
+        required: false
+      source:
+        description: technical name of publishing system
+        example: umg.cprs
+        type: string
+        required: false
+      messageid:
+        description: Unique Id for the message
+        example: 7be1e45f-4c56-4d4c-b29c-e9e5f2674e47
+        type: string
+        required: false
+      correlationid:
+        description: Id to corrleate across publish and subscribing systems
+        example: 7be1e45f-4c56-4d4c-b29c-e9e5f2674e47
+        type: string
+        required: false
+      target:
+        description: technical name of subscriber system
+        example: UMG.R2
+        type: string
+        required: false
     body:
       application/xml:
-        type: es-search-request
-        example: !include examples/EnterpriseSearchRequest.xml
+         example: !include examples/raw.xml
     responses:
       200:
         description: Standard response for successful HTTP requests. The response will contain an entity corresponding to the Search resource as an Enterprise Message
         body:
           application/xml:
-            type: es-search-response
-            example: !include examples/EnterpriseSearchResponse.xml
+            type: em-response
+            example: !include examples/EnterpriseMessageResponse.xml
       400:
           description: The server cannot or will not process the request due to an apparent client error e.g malformed request syntax, too large size, invalid request message framing
           body:
             application/xml:
-              type: es-search-exception
+              type: em-exception
+              example: !include examples/EnterpriseException.xml
+
+      401:
+          description:  Authentication is required and has failed or has not yet been provided
+
+      500:
+        description: A generic error message, given when an unexpected condition was encountered
+        body:
+          application/xml:
+            type: em-exception
+            example: !include examples/EnterpriseException.xml
+/message:
+  post:
+    (feedbackRequested):  Please comment and engage in the discussion
+    description: This will allow clients to publish business resources as an Enterprise message to enterprise Service
+    body:
+      application/xml:
+        type: em-request
+        example: !include examples/EnterpriseMessageRequest.xml
+    responses:
+      200:
+        description: Standard response for successful HTTP requests. The response will contain an entity corresponding to the Search resource as an Enterprise Message
+        body:
+          application/xml:
+            type: em-response
+            example: !include examples/EnterpriseMessageResponse.xml
+      400:
+          description: The server cannot or will not process the request due to an apparent client error e.g malformed request syntax, too large size, invalid request message framing
+          body:
+            application/xml:
+              type: em-exception
               example: !include examples/EnterpriseException.xml
       401:
           description:  Authentication is required and has failed or has not yet been provided
@@ -82,5 +112,5 @@ securedBy: basicAuth
         description: A generic error message, given when an unexpected condition was encountered
         body:
           application/xml:
-            type: es-search-exception
+            type: em-exception
             example: !include examples/EnterpriseException.xml

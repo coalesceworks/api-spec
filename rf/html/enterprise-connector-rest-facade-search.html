@@ -1,0 +1,791 @@
+<!DOCTYPE HTML><html><head><title>Enterprise Services Search API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 6.3.0"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+        $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
+          hljs.highlightBlock(block);
+        });
+
+        $('[data-toggle]').click(function() {
+          var selector = $(this).data('target') + ' pre code';
+          $(selector).each(function(i, block) {
+            hljs.highlightBlock(block);
+          });
+        });
+
+        // open modal on hashes like #_action_get
+        $(window).bind('hashchange', function(e) {
+          var anchor_id = document.location.hash.substr(1); //strip #
+          var element = $('#' + anchor_id);
+
+          // do we have such element + is it a modal?  --> show it
+          if (element.length && element.hasClass('modal')) {
+            element.modal('show');
+          }
+        });
+
+        // execute hashchange on first page load
+        $(window).trigger('hashchange');
+
+        // remove url fragment on modal hide
+        $('.modal').on('hidden.bs.modal', function() {
+          try {
+            if (history && history.replaceState) {
+                history.replaceState({}, '', '#');
+            }
+          } catch(e) {}
+        });
+      });
+    </script><style>
+      .hljs {
+        background: transparent;
+      }
+      .parent {
+        color: #999;
+      }
+      .list-group-item > .badge {
+        float: none;
+        margin-right: 6px;
+      }
+      .panel-title > .methods {
+        float: right;
+      }
+      .badge {
+        border-radius: 0;
+        text-transform: uppercase;
+        width: 70px;
+        font-weight: normal;
+        color: #f3f3f6;
+        line-height: normal;
+      }
+      .badge_get {
+        background-color: #63a8e2;
+      }
+      .badge_post {
+        background-color: #6cbd7d;
+      }
+      .badge_put {
+        background-color: #22bac4;
+      }
+      .badge_delete {
+        background-color: #d26460;
+      }
+      .badge_patch {
+        background-color: #ccc444;
+      }
+      .list-group, .panel-group {
+        margin-bottom: 0;
+      }
+      .panel-group .panel+.panel-white {
+        margin-top: 0;
+      }
+      .panel-group .panel-white {
+        border-bottom: 1px solid #F5F5F5;
+        border-radius: 0;
+      }
+      .panel-white:last-child {
+        border-bottom-color: white;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .panel-white .panel-heading {
+        background: white;
+      }
+      .tab-pane ul {
+        padding-left: 2em;
+      }
+      .tab-pane h1 {
+        font-size: 1.3em;
+      }
+      .tab-pane h2 {
+        font-size: 1.2em;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #ddd;
+      }
+      .tab-pane h3 {
+        font-size: 1.1em;
+      }
+      .tab-content {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+      }
+      #sidebar {
+        margin-top: 30px;
+        padding-right: 5px;
+        overflow: auto;
+        height: 90%;
+      }
+      .top-resource-description {
+        border-bottom: 1px solid #ddd;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description {
+        border-bottom: 1px solid #fcfcfc;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description p:last-child {
+        margin: 0;
+      }
+      .list-group .badge {
+        float: left;
+      }
+      .method_description {
+        margin-left: 85px;
+      }
+      .method_description p:last-child {
+        margin: 0;
+      }
+      .list-group-item {
+        cursor: pointer;
+      }
+      .list-group-item:hover {
+        background-color: #f5f5f5;
+      }
+      pre code {
+        overflow: auto;
+        word-wrap: normal;
+        white-space: pre;
+      }
+      .items {
+        background: #f5f5f5;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 9.5px;
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 1.42857143;
+      }
+      .examples {
+        margin-left: 0.5em;
+      }
+      .resource-modal li > ul {
+        margin-bottom: 1em;
+      }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Enterprise Services Search API documentation <small>version v2</small></h1><p>http://0.0.0.0:8966/rest-facade/search-{version}/search</p><ul><li><strong>version</strong>: <em>required (v2)</em></li></ul></div><div class="panel panel-default"><div class="panel-heading"><h3 id="resourcename_" class="panel-title">/{resourceName}</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_resourcename_"><span class="parent"></span>/{resourceName}</a> <span class="methods"><a href="#resourcename__get"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a> <a href="#resourcename__post"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span></a></span></h4></div><div id="panel_resourcename_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#resourcename__get'" class="list-group-item"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>This will allow clients to search business resources with the defined search query</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#resourcename__post'" class="list-group-item"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span><div class="method_description"><p>This will allow clients to search business resources with the search query within the request body.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="resourcename__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent"></span>/{resourceName}</h4></div><div class="modal-body"><div class="alert alert-info"><p>This will allow clients to search business resources with the defined search query</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>basicAuth</b><p>This is standrad basic auth</p></div><ul class="nav nav-tabs"><li class="active"><a href="#resourcename__get_request" data-toggle="tab">Request</a></li><li><a href="#resourcename__get_response" data-toggle="tab">Response</a></li><li><a href="#resourcename__get_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resourcename__get_request"><h3>URI Parameters</h3><ul><li><strong>resourceName</strong>: <em>required (string)</em></li></ul><h3>Annotations</h3><ul><li><strong>feedbackRequested</strong>:<pre><code>"Please comment and engage in the discussion"</code></pre></li></ul><h3>Query Parameters</h3><ul><li><strong>SearchQuery</strong>: <em>required (string)</em><p>This will be used as SearchQuery of EnterpriseSearch Message.</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>resource_id:997113282758</code></pre></div></li><li><strong>offset</strong>: <em>(integer)</em><p>This will be used as OffSet element of EnterpriseSearch Message.</p></li><li><strong>rows</strong>: <em>(integer)</em><p>This will be used as Rows element of EnterpriseSearch Message.</p></li></ul></div><div class="tab-pane" id="resourcename__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Standard response for successful HTTP requests. The response will contain an entity corresponding to the Search resource as an Enterprise Message</p><h3>Body</h3><p><strong>Media type</strong>: application/xml</p><p><strong>Type</strong>: xml</p><p><strong>Content</strong>:</p><pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://schemas.umusic.com/enterprise/services/2014/05" xmlns:ns0="http://schemas.umusic.com/enterprise/services/2014/05"&gt;
+    &lt;xs:element name="SearchResult"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element ref="ns0:Offset"/&gt;
+                &lt;xs:element ref="ns0:Rows"/&gt;
+                &lt;xs:element ref="ns0:Total"/&gt;
+                &lt;xs:element ref="ns0:MaxScore"/&gt;
+                &lt;xs:element ref="ns0:Matches"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="Offset" type="xs:integer"/&gt;
+    &lt;xs:element name="Rows" type="xs:integer"/&gt;
+    &lt;xs:element name="Total" type="xs:integer"/&gt;
+    &lt;xs:element name="MaxScore" type="xs:decimal"/&gt;
+    &lt;xs:element name="Matches"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element ref="ns0:Match"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="Match"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element ref="ns0:Score"/&gt;
+                &lt;xs:element ref="ns0:ResourceName"/&gt;
+                &lt;xs:element ref="ns0:ResourceId"/&gt;
+                &lt;xs:element ref="ns0:ResourceCreatedUtc"/&gt;
+                &lt;xs:element ref="ns0:Result"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="Score" type="xs:decimal"/&gt;
+    &lt;xs:element name="ResourceName" type="xs:NCName"/&gt;
+    &lt;xs:element name="ResourceId" type="xs:NCName"/&gt;
+    &lt;xs:element name="ResourceCreatedUtc" type="xs:NMTOKEN"/&gt;
+    &lt;xs:element name="Result"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:any processContents=&#39;skip&#39;/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+&lt;/xs:schema&gt;
+</code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;ns0:SearchResult xmlns:ns0="http://schemas.umusic.com/enterprise/services/2014/05"&gt;
+    &lt;ns0:Offset&gt;0&lt;/ns0:Offset&gt;
+    &lt;ns0:Rows&gt;10&lt;/ns0:Rows&gt;
+    &lt;ns0:Total&gt;1&lt;/ns0:Total&gt;
+    &lt;ns0:MaxScore&gt;27.468752&lt;/ns0:MaxScore&gt;
+    &lt;ns0:Matches&gt;
+        &lt;ns0:Match&gt;
+            &lt;ns0:Score&gt;27.468752&lt;/ns0:Score&gt;
+            &lt;ns0:ResourceName&gt;releaseschedule&lt;/ns0:ResourceName&gt;
+            &lt;ns0:ResourceId&gt;estestresourceid&lt;/ns0:ResourceId&gt;
+            &lt;ns0:ResourceCreatedUtc&gt;2015-04-30T09:33:42Z&lt;/ns0:ResourceCreatedUtc&gt;
+            &lt;ns0:Result&gt;
+                &lt;ReleaseSchedule xmlns="http://schemas.digiplug.com"&gt;
+                    &lt;UPC&gt;00602547770691&lt;/UPC&gt;
+                    &lt;CatalogNumber&gt;124536&lt;/CatalogNumber&gt;
+                    &lt;InternalIdentifier&gt;12987530005&lt;/InternalIdentifier&gt;
+                    &lt;SequenceNumber&gt;1&lt;/SequenceNumber&gt;
+                    &lt;Status&gt;SCHEDULED&lt;/Status&gt;
+                    &lt;LabelCopyMetadata&gt;
+                        &lt;LabelCopyReleaseId&gt;31709520964&lt;/LabelCopyReleaseId&gt;
+                        &lt;ArtistName&gt;Mary J. Blige, Feat. Taylor Swift&lt;/ArtistName&gt;
+                        &lt;Title&gt;Doubt&lt;/Title&gt;
+                        &lt;VersionTitle&gt;Live At Staples Center / 2015&lt;/VersionTitle&gt;
+                        &lt;HasExplicitLyrics&gt;false&lt;/HasExplicitLyrics&gt;
+                        &lt;DSchedOwningCountry&gt;US&lt;/DSchedOwningCountry&gt;
+                        &lt;AccountId&gt;0&lt;/AccountId&gt;
+                        &lt;ProductConfiguration&gt;120&lt;/ProductConfiguration&gt;
+                    &lt;/LabelCopyMetadata&gt;
+                    &lt;CoreReleaseDate&gt;2016-01-12&lt;/CoreReleaseDate&gt;
+                    &lt;EarliestReleaseDate&gt;2016-01-12&lt;/EarliestReleaseDate&gt;
+                    &lt;HasDefaultMarketingRestriction&gt;false&lt;/HasDefaultMarketingRestriction&gt;
+                    &lt;HasDefaultPreOrder&gt;false&lt;/HasDefaultPreOrder&gt;
+                    &lt;IsPriority&gt;false&lt;/IsPriority&gt;
+                    &lt;CategoryOfDelivery&gt;POP_CORE&lt;/CategoryOfDelivery&gt;
+                    &lt;KeyContact&gt;McMahon, Carolyn&lt;/KeyContact&gt;
+                    &lt;Source&gt;DiGS&lt;/Source&gt;
+                    &lt;Management&gt;
+                        &lt;ReleaseManagement&gt;LOCALLY_MANAGED&lt;/ReleaseManagement&gt;
+                    &lt;/Management&gt;
+                    &lt;LastUpdateDate&gt;2016-01-06T01:46:11&lt;/LastUpdateDate&gt;
+                    &lt;Countries&gt;
+                        &lt;Country&gt;
+                            &lt;CountryId&gt;US&lt;/CountryId&gt;
+                            &lt;LocalReleaseDate&gt;2016-01-12&lt;/LocalReleaseDate&gt;
+                            &lt;LocalExpiryDate xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/&gt;
+                            &lt;HasMarketingRestrictionException&gt;true&lt;/HasMarketingRestrictionException&gt;
+                            &lt;HasPreOrderException&gt;false&lt;/HasPreOrderException&gt;
+                            &lt;IsPriority&gt;false&lt;/IsPriority&gt;
+                            &lt;ReleasingFamilyId&gt;1261&lt;/ReleasingFamilyId&gt;
+                            &lt;LocalLabelCopyMetadata&gt;
+                                &lt;AccountId&gt;0&lt;/AccountId&gt;
+                                &lt;OrgStructure&gt;
+                                    &lt;CompanyId&gt;23554&lt;/CompanyId&gt;
+                                    &lt;DivisionId&gt;6306&lt;/DivisionId&gt;
+                                    &lt;LabelId&gt;4952&lt;/LabelId&gt;
+                                &lt;/OrgStructure&gt;
+                            &lt;/LocalLabelCopyMetadata&gt;
+                            &lt;Imprint&gt;Capitol Records (CAP)&lt;/Imprint&gt;
+                            &lt;ProjectCode&gt;0073-30885&lt;/ProjectCode&gt;
+                            &lt;Source&gt;DiGS&lt;/Source&gt;
+                            &lt;LocalStatus&gt;SCHEDULED&lt;/LocalStatus&gt;
+                            &lt;IsOriginating&gt;true&lt;/IsOriginating&gt;
+                        &lt;/Country&gt;
+                        &lt;Country&gt;
+                            &lt;CountryId&gt;MX&lt;/CountryId&gt;
+                            &lt;LocalReleaseDate&gt;2016-01-12&lt;/LocalReleaseDate&gt;
+                            &lt;LocalExpiryDate xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/&gt;
+                            &lt;HasMarketingRestrictionException&gt;false&lt;/HasMarketingRestrictionException&gt;
+                            &lt;HasPreOrderException&gt;false&lt;/HasPreOrderException&gt;
+                            &lt;IsPriority&gt;false&lt;/IsPriority&gt;
+                            &lt;ReleasingFamilyId&gt;16&lt;/ReleasingFamilyId&gt;
+                            &lt;LocalLabelCopyMetadata&gt;
+                                &lt;AccountId&gt;0&lt;/AccountId&gt;
+                                &lt;OrgStructure&gt;
+                                    &lt;CompanyId&gt;7669&lt;/CompanyId&gt;
+                                    &lt;DivisionId&gt;2605&lt;/DivisionId&gt;
+                                    &lt;LabelId&gt;989&lt;/LabelId&gt;
+                                &lt;/OrgStructure&gt;
+                            &lt;/LocalLabelCopyMetadata&gt;
+                            &lt;Imprint&gt;Capitol&lt;/Imprint&gt;
+                            &lt;ProjectCode&gt;0073-33388&lt;/ProjectCode&gt;
+                            &lt;Source&gt;DiGS&lt;/Source&gt;
+                            &lt;LocalStatus&gt;SCHEDULED&lt;/LocalStatus&gt;
+                            &lt;IsOriginating&gt;false&lt;/IsOriginating&gt;
+                        &lt;/Country&gt;
+                        &lt;Country&gt;
+                            &lt;CountryId&gt;CA&lt;/CountryId&gt;
+                            &lt;LocalReleaseDate&gt;2016-01-12&lt;/LocalReleaseDate&gt;
+                            &lt;LocalExpiryDate xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/&gt;
+                            &lt;HasMarketingRestrictionException&gt;false&lt;/HasMarketingRestrictionException&gt;
+                            &lt;HasPreOrderException&gt;false&lt;/HasPreOrderException&gt;
+                            &lt;IsPriority&gt;false&lt;/IsPriority&gt;
+                            &lt;ReleasingFamilyId&gt;9&lt;/ReleasingFamilyId&gt;
+                            &lt;LocalLabelCopyMetadata&gt;
+                                &lt;AccountId&gt;0&lt;/AccountId&gt;
+                                &lt;OrgStructure&gt;
+                                    &lt;CompanyId&gt;23555&lt;/CompanyId&gt;
+                                    &lt;DivisionId&gt;6298&lt;/DivisionId&gt;
+                                    &lt;LabelId&gt;4950&lt;/LabelId&gt;
+                                &lt;/OrgStructure&gt;
+                            &lt;/LocalLabelCopyMetadata&gt;
+                            &lt;Imprint&gt;Capitol Records (CAP)&lt;/Imprint&gt;
+                            &lt;ProjectCode&gt;0073-32047&lt;/ProjectCode&gt;
+                            &lt;Source&gt;DiGS&lt;/Source&gt;
+                            &lt;LocalStatus&gt;SCHEDULED&lt;/LocalStatus&gt;
+                            &lt;IsOriginating&gt;false&lt;/IsOriginating&gt;
+                        &lt;/Country&gt;
+                    &lt;/Countries&gt;
+                    &lt;Workflow&gt;
+                        &lt;Step&gt;
+                            &lt;StepName&gt;LabelCopy&lt;/StepName&gt;
+                            &lt;Completion&gt;COMPLETE&lt;/Completion&gt;
+                            &lt;CompletionDate&gt;2016-01-05&lt;/CompletionDate&gt;
+                            &lt;SequenceNumber&gt;1&lt;/SequenceNumber&gt;
+                        &lt;/Step&gt;
+                        &lt;Step&gt;
+                            &lt;StepName&gt;LegalRights&lt;/StepName&gt;
+                            &lt;Completion&gt;COMPLETE&lt;/Completion&gt;
+                            &lt;CompletionDate&gt;2015-12-21&lt;/CompletionDate&gt;
+                            &lt;SequenceNumber&gt;2&lt;/SequenceNumber&gt;
+                        &lt;/Step&gt;
+                        &lt;Step&gt;
+                            &lt;StepName&gt;BinaryAvailability&lt;/StepName&gt;
+                            &lt;Completion&gt;INCOMPLETE&lt;/Completion&gt;
+                            &lt;SequenceNumber&gt;3&lt;/SequenceNumber&gt;
+                        &lt;/Step&gt;
+                        &lt;Step&gt;
+                            &lt;StepName&gt;Translations&lt;/StepName&gt;
+                            &lt;Completion&gt;NOT_INITIALIZED&lt;/Completion&gt;
+                            &lt;SequenceNumber&gt;4&lt;/SequenceNumber&gt;
+                        &lt;/Step&gt;
+                        &lt;Step&gt;
+                            &lt;StepName&gt;MarketingRestrictions&lt;/StepName&gt;
+                            &lt;Completion&gt;NOT_INITIALIZED&lt;/Completion&gt;
+                            &lt;SequenceNumber&gt;5&lt;/SequenceNumber&gt;
+                        &lt;/Step&gt;
+                    &lt;/Workflow&gt;
+                &lt;/ReleaseSchedule&gt;
+            &lt;/ns0:Result&gt;
+        &lt;/ns0:Match&gt;
+    &lt;/ns0:Matches&gt;
+&lt;/ns0:SearchResult&gt;</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>The server cannot or will not process the request due to an apparent client error e.g malformed request syntax, too large size, invalid request message framing</p><h3>Body</h3><p><strong>Media type</strong>: application/xml</p><p><strong>Type</strong>: xml</p><p><strong>Content</strong>:</p><pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.umusic.com/enterprise/services/2014/05"
+           attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.umusic.com/enterprise/services/2014/05"&gt;
+    &lt;xs:element name="EnterpriseExceptionMessage" nillable="true" type="EnterpriseExceptionMessage"/&gt;
+
+    &lt;xs:complexType name="EnterpriseExceptionMessage"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="ExceptionId" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="CreatedUtc" type="xs:dateTime"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="xs:int"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Description" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="Details" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Category" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Retriable" type="xs:boolean"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="MessageId" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="ResourceName" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="ResourceId" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Service" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Machine" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element name="OriginalMessage"&gt;
+                &lt;xs:complexType&gt;
+                    &lt;xs:sequence&gt;
+                        &lt;xs:any processContents=&#39;skip&#39;/&gt;
+                    &lt;/xs:sequence&gt;
+                &lt;/xs:complexType&gt;
+            &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:schema&gt;
+</code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>&lt;ns:EnterpriseExceptionMessage xmlns:ns="http://schemas.umusic.com/enterprise/services/2014/05"&gt;
+    &lt;ns:ExceptionId&gt;string&lt;/ns:ExceptionId&gt;
+    &lt;ns:CreatedUtc&gt;2008-09-29T02:49:45&lt;/ns:CreatedUtc&gt;
+    &lt;ns:ErrorCode&gt;3&lt;/ns:ErrorCode&gt;
+    &lt;ns:Description&gt;string&lt;/ns:Description&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:Details&gt;string&lt;/ns:Details&gt;
+    &lt;ns:Category&gt;string&lt;/ns:Category&gt;
+    &lt;ns:Retriable&gt;true&lt;/ns:Retriable&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:MessageId&gt;string&lt;/ns:MessageId&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:ResourceName&gt;string&lt;/ns:ResourceName&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:ResourceId&gt;string&lt;/ns:ResourceId&gt;
+    &lt;ns:Service&gt;string&lt;/ns:Service&gt;
+    &lt;ns:Machine&gt;string&lt;/ns:Machine&gt;
+    &lt;ns:OriginalMessage&gt;
+        &lt;!--You may enter ANY elements at this point--&gt;
+        &lt;AnyElement/&gt;
+    &lt;/ns:OriginalMessage&gt;
+&lt;/ns:EnterpriseExceptionMessage&gt;</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Authentication is required and has failed or has not yet been provided</p><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>A generic error message, given when an unexpected condition was encountered</p><h3>Body</h3><p><strong>Media type</strong>: application/xml</p><p><strong>Type</strong>: xml</p><p><strong>Content</strong>:</p><pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.umusic.com/enterprise/services/2014/05"
+           attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.umusic.com/enterprise/services/2014/05"&gt;
+    &lt;xs:element name="EnterpriseExceptionMessage" nillable="true" type="EnterpriseExceptionMessage"/&gt;
+
+    &lt;xs:complexType name="EnterpriseExceptionMessage"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="ExceptionId" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="CreatedUtc" type="xs:dateTime"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="xs:int"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Description" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="Details" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Category" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Retriable" type="xs:boolean"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="MessageId" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="ResourceName" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="ResourceId" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Service" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Machine" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element name="OriginalMessage"&gt;
+                &lt;xs:complexType&gt;
+                    &lt;xs:sequence&gt;
+                        &lt;xs:any processContents=&#39;skip&#39;/&gt;
+                    &lt;/xs:sequence&gt;
+                &lt;/xs:complexType&gt;
+            &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:schema&gt;
+</code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>&lt;ns:EnterpriseExceptionMessage xmlns:ns="http://schemas.umusic.com/enterprise/services/2014/05"&gt;
+    &lt;ns:ExceptionId&gt;string&lt;/ns:ExceptionId&gt;
+    &lt;ns:CreatedUtc&gt;2008-09-29T02:49:45&lt;/ns:CreatedUtc&gt;
+    &lt;ns:ErrorCode&gt;3&lt;/ns:ErrorCode&gt;
+    &lt;ns:Description&gt;string&lt;/ns:Description&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:Details&gt;string&lt;/ns:Details&gt;
+    &lt;ns:Category&gt;string&lt;/ns:Category&gt;
+    &lt;ns:Retriable&gt;true&lt;/ns:Retriable&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:MessageId&gt;string&lt;/ns:MessageId&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:ResourceName&gt;string&lt;/ns:ResourceName&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:ResourceId&gt;string&lt;/ns:ResourceId&gt;
+    &lt;ns:Service&gt;string&lt;/ns:Service&gt;
+    &lt;ns:Machine&gt;string&lt;/ns:Machine&gt;
+    &lt;ns:OriginalMessage&gt;
+        &lt;!--You may enter ANY elements at this point--&gt;
+        &lt;AnyElement/&gt;
+    &lt;/ns:OriginalMessage&gt;
+&lt;/ns:EnterpriseExceptionMessage&gt;</code></pre></div></div><div class="tab-pane" id="resourcename__get_securedby"><h1>Secured by basicAuth</h1></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="resourcename__post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span> <span class="parent"></span>/{resourceName}</h4></div><div class="modal-body"><div class="alert alert-info"><p>This will allow clients to search business resources with the search query within the request body.</p></div><div class="alert alert-warning"><span class="glyphicon glyphicon-lock" title="Authentication required"></span> Secured by <b>basicAuth</b><p>This is standrad basic auth</p></div><ul class="nav nav-tabs"><li class="active"><a href="#resourcename__post_request" data-toggle="tab">Request</a></li><li><a href="#resourcename__post_response" data-toggle="tab">Response</a></li><li><a href="#resourcename__post_securedby" data-toggle="tab">Security</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resourcename__post_request"><h3>URI Parameters</h3><ul><li><strong>resourceName</strong>: <em>required (string)</em></li></ul><h3>Annotations</h3><ul><li><strong>feedbackRequested</strong>:<pre><code>"Please comment and engage in the discussion"</code></pre></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/xml</p><p><strong>Type</strong>: xml</p><p><strong>Content</strong>:</p><pre><code>&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?&gt;
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.umusic.com/enterprise/services/2014/05"
+           attributeFormDefault="qualified" elementFormDefault="qualified"
+           targetNamespace="http://schemas.umusic.com/enterprise/services/2014/05"&gt;
+    &lt;xs:element name="EnterpriseSearch" nillable="true" type="EnterpriseSearch"/&gt;
+    &lt;xs:complexType name="EnterpriseSearch"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element maxOccurs="1" minOccurs="0" name="Offset" type="xs:integer"/&gt;
+            &lt;xs:element maxOccurs="1" minOccurs="0" name="Rows" type="xs:integer"/&gt;
+            &lt;xs:element maxOccurs="1" minOccurs="0" name="Result" type="xs:string"/&gt;
+            &lt;xs:choice&gt;
+                &lt;xs:element maxOccurs="1" minOccurs="1" name="Condition" type="Condition"/&gt;
+                &lt;xs:element maxOccurs="1" minOccurs="1" name="SearchQuery" type="xs:string"/&gt;
+            &lt;/xs:choice&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+    &lt;xs:complexType name="Condition"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element maxOccurs="1" minOccurs="0" name="Operator" type="xs:string"/&gt;
+            &lt;xs:element maxOccurs="1" minOccurs="1" name="Properties" type="Properties"/&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+    &lt;xs:complexType name="Properties"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element maxOccurs="unbounded" minOccurs="1" name="Property" type="Property"/&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+    &lt;xs:complexType name="Property"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element maxOccurs="1" minOccurs="1" name="Key" type="xs:string"/&gt;
+            &lt;xs:element maxOccurs="1" minOccurs="1" name="Value" type="xs:string"/&gt;
+            &lt;xs:element maxOccurs="1" minOccurs="0" name="Operator" type="xs:string"/&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:schema&gt;
+</code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>&lt;es:EnterpriseSearch xmlns:es="http://schemas.umusic.com/enterprise/services/2014/05"&gt;
+  &lt;es:Offset&gt;0&lt;/es:Offset&gt;
+  &lt;es:Rows&gt;10&lt;/es:Rows&gt;
+  &lt;es:Result&gt;Master&lt;/es:Result&gt;
+  &lt;es:SearchQuery&gt;resource_id:ESTestResourceId AND dc\\:creator:DiGS AND dc\\:publisher:DiGS AND dc\\:identifier:12987530005 OR identifiers.upc:00602547770691 AND identifiers.catalog:124536&lt;/es:SearchQuery&gt;
+&lt;/es:EnterpriseSearch&gt;</code></pre></div></div><div class="tab-pane" id="resourcename__post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><p>Standard response for successful HTTP requests. The response will contain an entity corresponding to the Search resource as an Enterprise Message</p><h3>Body</h3><p><strong>Media type</strong>: application/xml</p><p><strong>Type</strong>: xml</p><p><strong>Content</strong>:</p><pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://schemas.umusic.com/enterprise/services/2014/05" xmlns:ns0="http://schemas.umusic.com/enterprise/services/2014/05"&gt;
+    &lt;xs:element name="SearchResult"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element ref="ns0:Offset"/&gt;
+                &lt;xs:element ref="ns0:Rows"/&gt;
+                &lt;xs:element ref="ns0:Total"/&gt;
+                &lt;xs:element ref="ns0:MaxScore"/&gt;
+                &lt;xs:element ref="ns0:Matches"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="Offset" type="xs:integer"/&gt;
+    &lt;xs:element name="Rows" type="xs:integer"/&gt;
+    &lt;xs:element name="Total" type="xs:integer"/&gt;
+    &lt;xs:element name="MaxScore" type="xs:decimal"/&gt;
+    &lt;xs:element name="Matches"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element ref="ns0:Match"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="Match"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:element ref="ns0:Score"/&gt;
+                &lt;xs:element ref="ns0:ResourceName"/&gt;
+                &lt;xs:element ref="ns0:ResourceId"/&gt;
+                &lt;xs:element ref="ns0:ResourceCreatedUtc"/&gt;
+                &lt;xs:element ref="ns0:Result"/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+    &lt;xs:element name="Score" type="xs:decimal"/&gt;
+    &lt;xs:element name="ResourceName" type="xs:NCName"/&gt;
+    &lt;xs:element name="ResourceId" type="xs:NCName"/&gt;
+    &lt;xs:element name="ResourceCreatedUtc" type="xs:NMTOKEN"/&gt;
+    &lt;xs:element name="Result"&gt;
+        &lt;xs:complexType&gt;
+            &lt;xs:sequence&gt;
+                &lt;xs:any processContents=&#39;skip&#39;/&gt;
+            &lt;/xs:sequence&gt;
+        &lt;/xs:complexType&gt;
+    &lt;/xs:element&gt;
+&lt;/xs:schema&gt;
+</code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;ns0:SearchResult xmlns:ns0="http://schemas.umusic.com/enterprise/services/2014/05"&gt;
+    &lt;ns0:Offset&gt;0&lt;/ns0:Offset&gt;
+    &lt;ns0:Rows&gt;10&lt;/ns0:Rows&gt;
+    &lt;ns0:Total&gt;1&lt;/ns0:Total&gt;
+    &lt;ns0:MaxScore&gt;27.468752&lt;/ns0:MaxScore&gt;
+    &lt;ns0:Matches&gt;
+        &lt;ns0:Match&gt;
+            &lt;ns0:Score&gt;27.468752&lt;/ns0:Score&gt;
+            &lt;ns0:ResourceName&gt;releaseschedule&lt;/ns0:ResourceName&gt;
+            &lt;ns0:ResourceId&gt;estestresourceid&lt;/ns0:ResourceId&gt;
+            &lt;ns0:ResourceCreatedUtc&gt;2015-04-30T09:33:42Z&lt;/ns0:ResourceCreatedUtc&gt;
+            &lt;ns0:Result&gt;
+                &lt;ReleaseSchedule xmlns="http://schemas.digiplug.com"&gt;
+                    &lt;UPC&gt;00602547770691&lt;/UPC&gt;
+                    &lt;CatalogNumber&gt;124536&lt;/CatalogNumber&gt;
+                    &lt;InternalIdentifier&gt;12987530005&lt;/InternalIdentifier&gt;
+                    &lt;SequenceNumber&gt;1&lt;/SequenceNumber&gt;
+                    &lt;Status&gt;SCHEDULED&lt;/Status&gt;
+                    &lt;LabelCopyMetadata&gt;
+                        &lt;LabelCopyReleaseId&gt;31709520964&lt;/LabelCopyReleaseId&gt;
+                        &lt;ArtistName&gt;Mary J. Blige, Feat. Taylor Swift&lt;/ArtistName&gt;
+                        &lt;Title&gt;Doubt&lt;/Title&gt;
+                        &lt;VersionTitle&gt;Live At Staples Center / 2015&lt;/VersionTitle&gt;
+                        &lt;HasExplicitLyrics&gt;false&lt;/HasExplicitLyrics&gt;
+                        &lt;DSchedOwningCountry&gt;US&lt;/DSchedOwningCountry&gt;
+                        &lt;AccountId&gt;0&lt;/AccountId&gt;
+                        &lt;ProductConfiguration&gt;120&lt;/ProductConfiguration&gt;
+                    &lt;/LabelCopyMetadata&gt;
+                    &lt;CoreReleaseDate&gt;2016-01-12&lt;/CoreReleaseDate&gt;
+                    &lt;EarliestReleaseDate&gt;2016-01-12&lt;/EarliestReleaseDate&gt;
+                    &lt;HasDefaultMarketingRestriction&gt;false&lt;/HasDefaultMarketingRestriction&gt;
+                    &lt;HasDefaultPreOrder&gt;false&lt;/HasDefaultPreOrder&gt;
+                    &lt;IsPriority&gt;false&lt;/IsPriority&gt;
+                    &lt;CategoryOfDelivery&gt;POP_CORE&lt;/CategoryOfDelivery&gt;
+                    &lt;KeyContact&gt;McMahon, Carolyn&lt;/KeyContact&gt;
+                    &lt;Source&gt;DiGS&lt;/Source&gt;
+                    &lt;Management&gt;
+                        &lt;ReleaseManagement&gt;LOCALLY_MANAGED&lt;/ReleaseManagement&gt;
+                    &lt;/Management&gt;
+                    &lt;LastUpdateDate&gt;2016-01-06T01:46:11&lt;/LastUpdateDate&gt;
+                    &lt;Countries&gt;
+                        &lt;Country&gt;
+                            &lt;CountryId&gt;US&lt;/CountryId&gt;
+                            &lt;LocalReleaseDate&gt;2016-01-12&lt;/LocalReleaseDate&gt;
+                            &lt;LocalExpiryDate xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/&gt;
+                            &lt;HasMarketingRestrictionException&gt;true&lt;/HasMarketingRestrictionException&gt;
+                            &lt;HasPreOrderException&gt;false&lt;/HasPreOrderException&gt;
+                            &lt;IsPriority&gt;false&lt;/IsPriority&gt;
+                            &lt;ReleasingFamilyId&gt;1261&lt;/ReleasingFamilyId&gt;
+                            &lt;LocalLabelCopyMetadata&gt;
+                                &lt;AccountId&gt;0&lt;/AccountId&gt;
+                                &lt;OrgStructure&gt;
+                                    &lt;CompanyId&gt;23554&lt;/CompanyId&gt;
+                                    &lt;DivisionId&gt;6306&lt;/DivisionId&gt;
+                                    &lt;LabelId&gt;4952&lt;/LabelId&gt;
+                                &lt;/OrgStructure&gt;
+                            &lt;/LocalLabelCopyMetadata&gt;
+                            &lt;Imprint&gt;Capitol Records (CAP)&lt;/Imprint&gt;
+                            &lt;ProjectCode&gt;0073-30885&lt;/ProjectCode&gt;
+                            &lt;Source&gt;DiGS&lt;/Source&gt;
+                            &lt;LocalStatus&gt;SCHEDULED&lt;/LocalStatus&gt;
+                            &lt;IsOriginating&gt;true&lt;/IsOriginating&gt;
+                        &lt;/Country&gt;
+                        &lt;Country&gt;
+                            &lt;CountryId&gt;MX&lt;/CountryId&gt;
+                            &lt;LocalReleaseDate&gt;2016-01-12&lt;/LocalReleaseDate&gt;
+                            &lt;LocalExpiryDate xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/&gt;
+                            &lt;HasMarketingRestrictionException&gt;false&lt;/HasMarketingRestrictionException&gt;
+                            &lt;HasPreOrderException&gt;false&lt;/HasPreOrderException&gt;
+                            &lt;IsPriority&gt;false&lt;/IsPriority&gt;
+                            &lt;ReleasingFamilyId&gt;16&lt;/ReleasingFamilyId&gt;
+                            &lt;LocalLabelCopyMetadata&gt;
+                                &lt;AccountId&gt;0&lt;/AccountId&gt;
+                                &lt;OrgStructure&gt;
+                                    &lt;CompanyId&gt;7669&lt;/CompanyId&gt;
+                                    &lt;DivisionId&gt;2605&lt;/DivisionId&gt;
+                                    &lt;LabelId&gt;989&lt;/LabelId&gt;
+                                &lt;/OrgStructure&gt;
+                            &lt;/LocalLabelCopyMetadata&gt;
+                            &lt;Imprint&gt;Capitol&lt;/Imprint&gt;
+                            &lt;ProjectCode&gt;0073-33388&lt;/ProjectCode&gt;
+                            &lt;Source&gt;DiGS&lt;/Source&gt;
+                            &lt;LocalStatus&gt;SCHEDULED&lt;/LocalStatus&gt;
+                            &lt;IsOriginating&gt;false&lt;/IsOriginating&gt;
+                        &lt;/Country&gt;
+                        &lt;Country&gt;
+                            &lt;CountryId&gt;CA&lt;/CountryId&gt;
+                            &lt;LocalReleaseDate&gt;2016-01-12&lt;/LocalReleaseDate&gt;
+                            &lt;LocalExpiryDate xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/&gt;
+                            &lt;HasMarketingRestrictionException&gt;false&lt;/HasMarketingRestrictionException&gt;
+                            &lt;HasPreOrderException&gt;false&lt;/HasPreOrderException&gt;
+                            &lt;IsPriority&gt;false&lt;/IsPriority&gt;
+                            &lt;ReleasingFamilyId&gt;9&lt;/ReleasingFamilyId&gt;
+                            &lt;LocalLabelCopyMetadata&gt;
+                                &lt;AccountId&gt;0&lt;/AccountId&gt;
+                                &lt;OrgStructure&gt;
+                                    &lt;CompanyId&gt;23555&lt;/CompanyId&gt;
+                                    &lt;DivisionId&gt;6298&lt;/DivisionId&gt;
+                                    &lt;LabelId&gt;4950&lt;/LabelId&gt;
+                                &lt;/OrgStructure&gt;
+                            &lt;/LocalLabelCopyMetadata&gt;
+                            &lt;Imprint&gt;Capitol Records (CAP)&lt;/Imprint&gt;
+                            &lt;ProjectCode&gt;0073-32047&lt;/ProjectCode&gt;
+                            &lt;Source&gt;DiGS&lt;/Source&gt;
+                            &lt;LocalStatus&gt;SCHEDULED&lt;/LocalStatus&gt;
+                            &lt;IsOriginating&gt;false&lt;/IsOriginating&gt;
+                        &lt;/Country&gt;
+                    &lt;/Countries&gt;
+                    &lt;Workflow&gt;
+                        &lt;Step&gt;
+                            &lt;StepName&gt;LabelCopy&lt;/StepName&gt;
+                            &lt;Completion&gt;COMPLETE&lt;/Completion&gt;
+                            &lt;CompletionDate&gt;2016-01-05&lt;/CompletionDate&gt;
+                            &lt;SequenceNumber&gt;1&lt;/SequenceNumber&gt;
+                        &lt;/Step&gt;
+                        &lt;Step&gt;
+                            &lt;StepName&gt;LegalRights&lt;/StepName&gt;
+                            &lt;Completion&gt;COMPLETE&lt;/Completion&gt;
+                            &lt;CompletionDate&gt;2015-12-21&lt;/CompletionDate&gt;
+                            &lt;SequenceNumber&gt;2&lt;/SequenceNumber&gt;
+                        &lt;/Step&gt;
+                        &lt;Step&gt;
+                            &lt;StepName&gt;BinaryAvailability&lt;/StepName&gt;
+                            &lt;Completion&gt;INCOMPLETE&lt;/Completion&gt;
+                            &lt;SequenceNumber&gt;3&lt;/SequenceNumber&gt;
+                        &lt;/Step&gt;
+                        &lt;Step&gt;
+                            &lt;StepName&gt;Translations&lt;/StepName&gt;
+                            &lt;Completion&gt;NOT_INITIALIZED&lt;/Completion&gt;
+                            &lt;SequenceNumber&gt;4&lt;/SequenceNumber&gt;
+                        &lt;/Step&gt;
+                        &lt;Step&gt;
+                            &lt;StepName&gt;MarketingRestrictions&lt;/StepName&gt;
+                            &lt;Completion&gt;NOT_INITIALIZED&lt;/Completion&gt;
+                            &lt;SequenceNumber&gt;5&lt;/SequenceNumber&gt;
+                        &lt;/Step&gt;
+                    &lt;/Workflow&gt;
+                &lt;/ReleaseSchedule&gt;
+            &lt;/ns0:Result&gt;
+        &lt;/ns0:Match&gt;
+    &lt;/ns0:Matches&gt;
+&lt;/ns0:SearchResult&gt;</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2><p>The server cannot or will not process the request due to an apparent client error e.g malformed request syntax, too large size, invalid request message framing</p><h3>Body</h3><p><strong>Media type</strong>: application/xml</p><p><strong>Type</strong>: xml</p><p><strong>Content</strong>:</p><pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.umusic.com/enterprise/services/2014/05"
+           attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.umusic.com/enterprise/services/2014/05"&gt;
+    &lt;xs:element name="EnterpriseExceptionMessage" nillable="true" type="EnterpriseExceptionMessage"/&gt;
+
+    &lt;xs:complexType name="EnterpriseExceptionMessage"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="ExceptionId" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="CreatedUtc" type="xs:dateTime"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="xs:int"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Description" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="Details" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Category" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Retriable" type="xs:boolean"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="MessageId" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="ResourceName" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="ResourceId" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Service" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Machine" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element name="OriginalMessage"&gt;
+                &lt;xs:complexType&gt;
+                    &lt;xs:sequence&gt;
+                        &lt;xs:any processContents=&#39;skip&#39;/&gt;
+                    &lt;/xs:sequence&gt;
+                &lt;/xs:complexType&gt;
+            &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:schema&gt;
+</code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>&lt;ns:EnterpriseExceptionMessage xmlns:ns="http://schemas.umusic.com/enterprise/services/2014/05"&gt;
+    &lt;ns:ExceptionId&gt;string&lt;/ns:ExceptionId&gt;
+    &lt;ns:CreatedUtc&gt;2008-09-29T02:49:45&lt;/ns:CreatedUtc&gt;
+    &lt;ns:ErrorCode&gt;3&lt;/ns:ErrorCode&gt;
+    &lt;ns:Description&gt;string&lt;/ns:Description&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:Details&gt;string&lt;/ns:Details&gt;
+    &lt;ns:Category&gt;string&lt;/ns:Category&gt;
+    &lt;ns:Retriable&gt;true&lt;/ns:Retriable&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:MessageId&gt;string&lt;/ns:MessageId&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:ResourceName&gt;string&lt;/ns:ResourceName&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:ResourceId&gt;string&lt;/ns:ResourceId&gt;
+    &lt;ns:Service&gt;string&lt;/ns:Service&gt;
+    &lt;ns:Machine&gt;string&lt;/ns:Machine&gt;
+    &lt;ns:OriginalMessage&gt;
+        &lt;!--You may enter ANY elements at this point--&gt;
+        &lt;AnyElement/&gt;
+    &lt;/ns:OriginalMessage&gt;
+&lt;/ns:EnterpriseExceptionMessage&gt;</code></pre></div><h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2><p>Authentication is required and has failed or has not yet been provided</p><h2>HTTP status code <a href="http://httpstatus.es/500" target="_blank">500</a></h2><p>A generic error message, given when an unexpected condition was encountered</p><h3>Body</h3><p><strong>Media type</strong>: application/xml</p><p><strong>Type</strong>: xml</p><p><strong>Content</strong>:</p><pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+&lt;xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.umusic.com/enterprise/services/2014/05"
+           attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.umusic.com/enterprise/services/2014/05"&gt;
+    &lt;xs:element name="EnterpriseExceptionMessage" nillable="true" type="EnterpriseExceptionMessage"/&gt;
+
+    &lt;xs:complexType name="EnterpriseExceptionMessage"&gt;
+        &lt;xs:sequence&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="ExceptionId" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="CreatedUtc" type="xs:dateTime"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="xs:int"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Description" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="Details" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Category" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Retriable" type="xs:boolean"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="MessageId" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="ResourceName" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="0" maxOccurs="1" name="ResourceId" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Service" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element minOccurs="1" maxOccurs="1" name="Machine" type="xs:string"&gt;&lt;/xs:element&gt;
+            &lt;xs:element name="OriginalMessage"&gt;
+                &lt;xs:complexType&gt;
+                    &lt;xs:sequence&gt;
+                        &lt;xs:any processContents=&#39;skip&#39;/&gt;
+                    &lt;/xs:sequence&gt;
+                &lt;/xs:complexType&gt;
+            &lt;/xs:element&gt;
+        &lt;/xs:sequence&gt;
+    &lt;/xs:complexType&gt;
+&lt;/xs:schema&gt;
+</code></pre><p><strong>Example</strong>:</p><div class="examples"><pre><code>&lt;ns:EnterpriseExceptionMessage xmlns:ns="http://schemas.umusic.com/enterprise/services/2014/05"&gt;
+    &lt;ns:ExceptionId&gt;string&lt;/ns:ExceptionId&gt;
+    &lt;ns:CreatedUtc&gt;2008-09-29T02:49:45&lt;/ns:CreatedUtc&gt;
+    &lt;ns:ErrorCode&gt;3&lt;/ns:ErrorCode&gt;
+    &lt;ns:Description&gt;string&lt;/ns:Description&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:Details&gt;string&lt;/ns:Details&gt;
+    &lt;ns:Category&gt;string&lt;/ns:Category&gt;
+    &lt;ns:Retriable&gt;true&lt;/ns:Retriable&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:MessageId&gt;string&lt;/ns:MessageId&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:ResourceName&gt;string&lt;/ns:ResourceName&gt;
+    &lt;!--Optional:--&gt;
+    &lt;ns:ResourceId&gt;string&lt;/ns:ResourceId&gt;
+    &lt;ns:Service&gt;string&lt;/ns:Service&gt;
+    &lt;ns:Machine&gt;string&lt;/ns:Machine&gt;
+    &lt;ns:OriginalMessage&gt;
+        &lt;!--You may enter ANY elements at this point--&gt;
+        &lt;AnyElement/&gt;
+    &lt;/ns:OriginalMessage&gt;
+&lt;/ns:EnterpriseExceptionMessage&gt;</code></pre></div></div><div class="tab-pane" id="resourcename__post_securedby"><h1>Secured by basicAuth</h1></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#resourcename_">/{resourceName}</a></li></ul></div></div></div></div></body></html>

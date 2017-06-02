@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:EnterpriseResponse xmlns:ns2="http://es.umgi.com/XMLSchemas/CustomProps" xmlns:ns1="http://schemas.umusic.com/enterprise/services/2014/05">
+    <ns1:ResponseHeader>
+        <ns1:ResponseId>7be1e45f-4c56-4d4c-b29c-e9e5f2674e47</ns1:ResponseId>
+        <ns1:RequestId>e535b380-b92f-4df1-815a-ac0c759994fa</ns1:RequestId>
+        <ns1:ThreadId>8ad29194-6375-4c0b-80db-2a393eea4165</ns1:ThreadId>
+        <ns1:CreatedUtc>2017-05-31T15:39:31.978Z</ns1:CreatedUtc>
+        <ns1:State>Success</ns1:State>
+        <ns1:Status>202002101</ns1:Status>
+        <ns1:Description>The request message has been successfully received and will be processed in due course</ns1:Description>
+    </ns1:ResponseHeader>
+</ns1:EnterpriseResponse>

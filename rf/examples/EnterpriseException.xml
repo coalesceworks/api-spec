@@ -1,0 +1,22 @@
+<ns:EnterpriseExceptionMessage xmlns:ns="http://schemas.umusic.com/enterprise/services/2014/05">
+    <ns:ExceptionId>string</ns:ExceptionId>
+    <ns:CreatedUtc>2008-09-29T02:49:45</ns:CreatedUtc>
+    <ns:ErrorCode>3</ns:ErrorCode>
+    <ns:Description>string</ns:Description>
+    <!--Optional:-->
+    <ns:Details>string</ns:Details>
+    <ns:Category>string</ns:Category>
+    <ns:Retriable>true</ns:Retriable>
+    <!--Optional:-->
+    <ns:MessageId>string</ns:MessageId>
+    <!--Optional:-->
+    <ns:ResourceName>string</ns:ResourceName>
+    <!--Optional:-->
+    <ns:ResourceId>string</ns:ResourceId>
+    <ns:Service>string</ns:Service>
+    <ns:Machine>string</ns:Machine>
+    <ns:OriginalMessage>
+        <!--You may enter ANY elements at this point-->
+        <AnyElement/>
+    </ns:OriginalMessage>
+</ns:EnterpriseExceptionMessage>

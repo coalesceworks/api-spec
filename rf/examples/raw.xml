@@ -1,0 +1,67 @@
+<PhysicalAssetMessage
+        xmlns="http://schemas.umusic.com/umg.eai.asset-messages.v1"
+        xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <MessageHeader
+            xmlns="">
+        <MessageId>wto-7df35cb9-fc10-4553-8f83-0cc6d8c1a104</MessageId>
+        <MessageSource>AIC</MessageSource>
+        <MessageUtcDateTimeStamp>2015-04-30T09:33:42.1004185Z</MessageUtcDateTimeStamp>
+        <ResourceType>PhysicalAssetMessage</ResourceType>
+        <ResourceId>700p311Eo6lSTest5</ResourceId>
+        <ResourceUtcDateTimeStamp>2015-05-11T08:33:40Z</ResourceUtcDateTimeStamp>
+        <SchemaVersion>1.0</SchemaVersion>
+        <DefaultLanguageScriptCode>en</DefaultLanguageScriptCode>
+    </MessageHeader>
+    <PhysicalAsset
+            xmlns="">
+        <PhysicalAssetIdentifier IsPrimaryId="true" Type="Barcode">ESTest5</PhysicalAssetIdentifier>
+        <PhysicalAssetIdentifier IsPrimaryId="false" Type="Catalog">878</PhysicalAssetIdentifier>
+        <Description>CRY/NOW YOUR\aGONE</Description>
+        <Version>Copy</Version>
+        <Location>
+            <Country>UK</Country>
+            <VaultType>UMG</VaultType>
+            <VaultName>ADS-TNT</VaultName>
+            <ShelfCode>ADS-TNT</ShelfCode>
+            <ArchivalStatus>Shelved</ArchivalStatus>
+        </Location>
+        <Format>1/4 inch &amp; María corría detrás del mesón, cuando se encontró un ñú detras de su salón ça vá, ça va bièn et toi? Արամ Խաչատրյան Nicole Kidman Johann Strauß Vaqif Səmədoğlu Вагиф Сәмәдоғлу Heydər Əliyev Һејдәр Әлијев René Magritte সুকুমার রায় མགོན་པོ་རྡོ་རྗེ། ព្រះពុទ្ឋឃោសាចារ‌្យជួនណាត Céline Dion ᓱᓴᓐ ᐊᒡᓗᒃᑲᖅ ᏍᏏᏉᏯ 章子怡 王菲 Antonín Dvořák Søren Hauch-Fausbøll Søren Kierkegård ብርሃነ ዘርኣይ ኃይሌ ገብረሥላሴ Mika Häkkinen Gérard Depardieu Jean Réno Camille Saint-Saëns MylèneDemongeot François Truffaut ⠇⠕⠥⠊⠎ ⠃⠗⠁⠊⠇⠇⠑ ედუარდ შევარდნაძე Jürgen Klinsmann Walter Schultheiß Γιώργος Νταλάρας Ortrás Sütő Björk Guðmundsdóttir माधुरी दीक्षित Sinéad O’Connor יהורם גאון Fabrizio De Corcó 林原 めぐみ 宮崎 駿 森鷗外 テクス・テクサン 이설희 안성기 심은하 솅조ᇰ (세종대왕) Trevor Żahra Tor Åge Bringsværd Herbjørn Sørebø Nicómedes Santa Cruz Lech Wałęsa Amália Rodrigues Olga Tañón Pūblius Cornēlius Scīpiō Africānus Михаил Горбачёв Борис Гребенщиков שלום עליכם Áillohaš Ľudovít Štúr Frane Milčinski - Ježek Björn Borg Ἀρχιμήδης Садриддин Айнӣ சிவாஜி கனேசன் 舒淇 李安 ธงไชย แม็คอินไตย์ Ніна Матвієнко Brad Pitt Солижон Шарипов Alisher ibn Giyosiddin Navoiy Trịnh Công Sơn Đorđe Balašević Ђорђе Балашевић audio tape[Reel Size - 5 "]</Format>
+        <MediaType>Audio</MediaType>
+        <TapeWidth>5 inch</TapeWidth>
+        <Label>
+            <Name>Dick JamesMusic</Name>
+        </Label>
+        <Artist>
+            <PartyName>
+                <Name>GEMINI</Name>
+            </PartyName>
+        </Artist>
+        <Resource>
+            <Index>
+                <Sequence>1</Sequence>
+            </Index>
+            <ResourceTitle LanguageScriptCode="en">
+                <Title>CRY</Title>
+            </ResourceTitle>
+            <Artist>
+                <PartyName>
+                    <Name>GEMINI</Name>
+                </PartyName>
+            </Artist>
+        </Resource>
+        <Resource>
+            <Index>
+                <Sequence>2</Sequence>
+            </Index>
+            <ResourceTitle LanguageScriptCode="en">
+                <Title>NOW YOUR GONE</Title>
+            </ResourceTitle>
+            <Artist>
+                <PartyName>
+                    <Name>GEMINI</Name>
+                </PartyName>
+            </Artist>
+        </Resource>
+    </PhysicalAsset>
+</PhysicalAssetMessage>

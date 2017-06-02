@@ -1,0 +1,56 @@
+#%RAML 1.0
+title: Enterprise Services Retrieve
+version: v2
+baseUri: http://0.0.0.0:8966/rest-facade/retrieve-{version}
+mediaType: application/xml
+securitySchemes:
+  basicAuth:
+    description: This is standrad basic auth
+    type: Basic Authentication
+annotationTypes:
+  feedbackRequested: string
+types:
+  em-exception: !include schemas/EnterpriseException.xsd
+securedBy: basicAuth
+/{resourceName}:
+  get:
+    (feedbackRequested):  Please comment and engage in the discussion
+    description: This will allow clients to retrieve business resources with the defined query parameters
+    queryParameters:
+      identifier:
+        description: Unique identifier for the resource.
+        example: 700p311Eo6
+        type: string
+        required: true
+      version:
+        description: 17 digit timestamp as yyyyMMddHHmmssSSS to identify version of the published resource.
+        example: 20173105164955891
+        type: integer
+        required: false
+      wrap:
+        description: This will be used as wrap as Enterprise Message. We are collecting feedback this feature will be coming soon
+        type: boolean
+        required: false
+    responses:
+      200:
+        description: Standard response for successful HTTP requests. The response will contain an entity corresponding to the Search resource as an Enterprise Message
+        body:
+          application/xml:
+            example: !include examples/raw.xml
+
+      400:
+          description: The server cannot or will not process the request due to an apparent client error e.g malformed request syntax, too large size, invalid request message framing
+          body:
+            application/xml:
+              type: em-exception
+              example: !include examples/EnterpriseException.xml
+
+      401:
+          description:  Authentication is required and has failed or has not yet been provided
+
+      500:
+        description: A generic error message, given when an unexpected condition was encountered
+        body:
+          application/xml:
+            type: em-exception
+            example: !include examples/EnterpriseException.xml
